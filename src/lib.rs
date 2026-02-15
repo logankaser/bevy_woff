@@ -1,17 +1,23 @@
 use bevy_app::{App, Plugin};
-use bevy_asset::{io::Reader, AssetApp, AssetLoader, LoadContext};
+#[cfg(any(feature = "woff1", feature = "woff2"))]
+use bevy_asset::{AssetApp, AssetLoader, LoadContext, io::Reader};
+#[cfg(any(feature = "woff1", feature = "woff2"))]
 use bevy_reflect::TypePath;
+#[cfg(any(feature = "woff1", feature = "woff2"))]
 use bevy_text::Font;
 
 pub struct WoffPlugin;
 
 impl Plugin for WoffPlugin {
-    fn build(&self, app: &mut App) {
+    fn build(&self, #[allow(unused_variables)] app: &mut App) {
+        #[cfg(feature = "woff1")]
         app.register_asset_loader(Woff1AssetLoader);
+        #[cfg(feature = "woff2")]
         app.register_asset_loader(Woff2AssetLoader);
     }
 }
 
+#[cfg(any(feature = "woff1", feature = "woff2"))]
 #[derive(Debug, thiserror::Error)]
 enum WoffLoadError {
     #[error(transparent)]
@@ -22,13 +28,16 @@ enum WoffLoadError {
     Font(Box<dyn std::error::Error + Send + Sync>),
 }
 
+#[cfg(any(feature = "woff1", feature = "woff2"))]
 fn load_font(ttf_bytes: Vec<u8>) -> Result<Font, WoffLoadError> {
     Font::try_from_bytes(ttf_bytes).map_err(|e| WoffLoadError::Font(Box::new(e)))
 }
 
+#[cfg(feature = "woff1")]
 #[derive(Default, TypePath)]
 struct Woff1AssetLoader;
 
+#[cfg(feature = "woff1")]
 impl AssetLoader for Woff1AssetLoader {
     type Asset = Font;
     type Settings = ();
@@ -42,8 +51,7 @@ impl AssetLoader for Woff1AssetLoader {
     ) -> Result<Self::Asset, Self::Error> {
         let mut woff_bytes = Vec::new();
         reader.read_to_end(&mut woff_bytes).await?;
-        let ttf_bytes =
-            wuff::decompress_woff1(&woff_bytes).map_err(WoffLoadError::Decompress)?;
+        let ttf_bytes = wuff::decompress_woff1(&woff_bytes).map_err(WoffLoadError::Decompress)?;
         load_font(ttf_bytes)
     }
 
@@ -52,9 +60,11 @@ impl AssetLoader for Woff1AssetLoader {
     }
 }
 
+#[cfg(feature = "woff2")]
 #[derive(Default, TypePath)]
 struct Woff2AssetLoader;
 
+#[cfg(feature = "woff2")]
 impl AssetLoader for Woff2AssetLoader {
     type Asset = Font;
     type Settings = ();
@@ -68,8 +78,7 @@ impl AssetLoader for Woff2AssetLoader {
     ) -> Result<Self::Asset, Self::Error> {
         let mut woff2_bytes = Vec::new();
         reader.read_to_end(&mut woff2_bytes).await?;
-        let ttf_bytes =
-            wuff::decompress_woff2(&woff2_bytes).map_err(WoffLoadError::Decompress)?;
+        let ttf_bytes = wuff::decompress_woff2(&woff2_bytes).map_err(WoffLoadError::Decompress)?;
         load_font(ttf_bytes)
     }
 

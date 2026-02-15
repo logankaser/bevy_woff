@@ -39,6 +39,7 @@ fn load_ttf_font() {
 }
 
 #[test]
+#[cfg(feature = "woff1")]
 fn load_woff_font() {
     let mut app = test_app();
     app.add_plugins(WoffPlugin);
@@ -51,6 +52,7 @@ fn load_woff_font() {
 }
 
 #[test]
+#[cfg(feature = "woff2")]
 fn load_woff2_font() {
     let mut app = test_app();
     app.add_plugins(WoffPlugin);

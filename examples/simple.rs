@@ -1,5 +1,4 @@
 use bevy::{asset::AssetMetaCheck, prelude::*};
-use bevy_text::FontFeatureTag;
 use bevy_woff::WoffPlugin;
 
 fn main() -> AppExit {

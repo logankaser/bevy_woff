@@ -18,7 +18,26 @@ fn main() -> AppExit {
 }
 ```
 
-Once the plugin is added, `.woff` and `.woff2` files can be loaded as `Font` assets through the `AssetServer` just like `.ttf` or `.otf` files.
+Once the plugin is added, `.woff2` files can be loaded as `Font` assets through the `AssetServer` just like `.ttf` or `.otf` files.
+
+## Features
+
+| Feature | Default | Description |
+|---------|---------|-------------|
+| `woff2` | Yes | Adds `.woff2` file support (pulls in brotli decompression) |
+| `woff1` | No | Adds `.woff` file support (pulls in zlib decompression) |
+
+To enable both formats:
+
+```toml
+bevy_woff = { version = "0.1", features = ["woff1"] }
+```
+
+To use only `.woff` without `.woff2`:
+
+```toml
+bevy_woff = { version = "0.1", default-features = false, features = ["woff1"] }
+```
 
 ## Compatibility
 

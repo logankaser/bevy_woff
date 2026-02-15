@@ -19,7 +19,16 @@ bevy_text = "0.18"
 bevy_app = "0.18"
 bevy_reflect = "0.18"
 thiserror = "2"
-wuff = { version = "0.2", features = ["brotli", "z"] }
+wuff = { version = "0.2", default-features = false }
+
+[features]
+default = ["woff2"]
+woff1 = ["wuff/z"]
+woff2 = ["wuff/brotli"]
+
+[[example]]
+name = "simple"
+required-features = ["woff1", "woff2"]
 
 [dev-dependencies]
 bevy = { version = "0.18", default-features = false, features = ["2d", "webgpu"] }
