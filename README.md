@@ -14,7 +14,13 @@ use bevy_woff::WoffPlugin;
 fn main() -> AppExit {
     App::new()
         .add_plugins((DefaultPlugins, WoffPlugin))
+        .add_systems(Startup, setup)
         .run()
+}
+
+fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
+    let font = asset_server.load::<Font>("my_font.woff2");
+    // ...
 }
 ```
 
