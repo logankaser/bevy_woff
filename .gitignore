@@ -4,3 +4,4 @@
 .cargo/config.toml
 .serena
 .DS_Store
+/Cargo.lock

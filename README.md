@@ -55,9 +55,10 @@ bevy_woff = { version = "0.1", default-features = false, features = ["woff1"] }
 
 ## Compatibility
 
-| bevy | bevy_woff |
-|------|-----------|
-| 0.18 | 0.1       |
+| bevy  | bevy_woff |
+|-------|-----------|
+| 0.18.1 | 0.1      |
+| 0.18.0 | 0.1      |
 
 ## Future
 
