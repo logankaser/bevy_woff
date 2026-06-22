@@ -44,19 +44,20 @@ Once the plugin is added, `.woff2` files can be loaded as `Font` assets through 
 To enable both formats:
 
 ```toml
-bevy_woff = { version = "0.1", features = ["woff1"] }
+bevy_woff = { version = "0.2", features = ["woff1"] }
 ```
 
 To use only `.woff` without `.woff2`:
 
 ```toml
-bevy_woff = { version = "0.1", default-features = false, features = ["woff1"] }
+bevy_woff = { version = "0.2", default-features = false, features = ["woff1"] }
 ```
 
 ## Compatibility
 
 | bevy  | bevy_woff |
 |-------|-----------|
+| 0.19.0 | 0.2      |
 | 0.18.1 | 0.1      |
 | 0.18.0 | 0.1      |
 

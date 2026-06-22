@@ -1,6 +1,6 @@
 [package]
 name = "bevy_woff"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2024"
 description = "Bevy plugin for loading .woff and .woff2 web fonts as assets"
 license = "MIT OR Apache-2.0"
@@ -14,10 +14,10 @@ include = ["Cargo.toml", "src", "README.md", "LICENSE-MIT", "LICENSE-APACHE"]
 [lib]
 
 [dependencies]
-bevy_asset = "0.18"
-bevy_text = "0.18"
-bevy_app = "0.18"
-bevy_reflect = "0.18"
+bevy_asset = "0.19"
+bevy_text = "0.19"
+bevy_app = "0.19"
+bevy_reflect = "0.19"
 thiserror = "2"
 wuff = { version = "0.2", default-features = false }
 
@@ -31,4 +31,4 @@ name = "simple"
 required-features = ["woff1", "woff2"]
 
 [dev-dependencies]
-bevy = { version = "0.18", default-features = false, features = ["2d", "webgpu"] }
+bevy = { version = "0.19", default-features = false, features = ["2d", "webgpu", "ui"] }

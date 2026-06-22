@@ -41,8 +41,8 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
             (
                 Text::new("Hello from .woff2! (Public Sans Regular)"),
                 TextFont {
-                    font: woff2_font,
-                    font_size: 48.0,
+                    font: FontSource::Handle(woff2_font),
+                    font_size: FontSize::Px(48.0),
                     ..default()
                 },
                 TextColor(Color::BLACK),
@@ -50,8 +50,8 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
             (
                 Text::new("Hello from .woff! (Public Sans Italic)"),
                 TextFont {
-                    font: woff_font,
-                    font_size: 48.0,
+                    font: FontSource::Handle(woff_font),
+                    font_size: FontSize::Px(48.0),
                     ..default()
                 },
                 TextColor(Color::BLACK),
@@ -59,8 +59,8 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
             (
                 Text::new("Hello from .ttf! (Public Sans ExtraBold Italic)"),
                 TextFont {
-                    font: ttf_font,
-                    font_size: 48.0,
+                    font: FontSource::Handle(ttf_font),
+                    font_size: FontSize::Px(48.0),
                     weight: FontWeight::EXTRA_BOLD,
                     ..default()
                 },

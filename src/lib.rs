@@ -24,13 +24,11 @@ enum WoffLoadError {
     Io(#[from] std::io::Error),
     #[error("woff decompression failed: {0}")]
     Decompress(wuff::WuffErr),
-    #[error("invalid font data: {0}")]
-    Font(Box<dyn std::error::Error + Send + Sync>),
 }
 
 #[cfg(any(feature = "woff1", feature = "woff2"))]
 fn load_font(ttf_bytes: Vec<u8>) -> Result<Font, WoffLoadError> {
-    Font::try_from_bytes(ttf_bytes).map_err(|e| WoffLoadError::Font(Box::new(e)))
+    Ok(Font::from_bytes(ttf_bytes))
 }
 
 #[cfg(feature = "woff1")]
