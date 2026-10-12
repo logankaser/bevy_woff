@@ -57,6 +57,7 @@ bevy_woff = { version = "0.2", default-features = false, features = ["woff1"] }
 
 | bevy  | bevy_woff |
 |-------|-----------|
+| 0.20.x | 0.3      |
 | 0.19.x | 0.2      |
 | 0.18.x | 0.1      |
 
